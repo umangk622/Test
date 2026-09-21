@@ -1,0 +1,2596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RailPathshala Pro | Practice Today. Perform Better Tomorrow.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #1e40af;
+      --primary-dark: #1e3a8a;
+      --primary-light: #3b82f6;
+      --accent: #f59e0b;
+      --accent-hover: #d97706;
+      --navy: #0f172a;
+      --slate: #1e293b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 28px rgba(0,0,0,0.1);
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TYPOGRAPHY & UTILITIES */
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; outline: none; font-family: inherit; transition: all 0.2s ease; }
+    input, select, textarea { font-family: inherit; }
+    .hidden { display: none !important; }
+    .container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 1.25rem; }
+    .badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+    .badge-primary { background: #eff6ff; color: var(--primary); }
+    .badge-warning { background: #fffbeb; color: #b45309; }
+    .badge-success { background: #ecfdf5; color: #047857; }
+    .badge-danger { background: #fef2f2; color: #b91c1c; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-size: 0.925rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-secondary { background: #e2e8f0; color: var(--slate); }
+    .btn-secondary:hover { background: #cbd5e1; }
+    .btn-accent { background: var(--accent); color: white; }
+    .btn-accent:hover { background: var(--accent-hover); }
+    .btn-outline { border: 1.5px solid var(--border); background: transparent; color: var(--text); }
+    .btn-outline:hover { background: #f1f5f9; }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-danger:hover { background: #dc2626; }
+    .btn-block { width: 100%; }
+
+    /* HEADER */
+    header.main-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    .brand-logo span { color: var(--accent); }
+    .brand-logo svg { width: 28px; height: 28px; fill: currentColor; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--slate);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .mobile-toggle { display: none; background: none; border: none; color: var(--slate); padding: 5px; }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 4.5rem 0 3.5rem;
+      background: linear-gradient(135deg, #f0f7ff 0%, #e2eeff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .hero-badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate);
+    }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-visual {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      position: relative;
+      animation: floatWidget 5s ease-in-out infinite alternate;
+    }
+    @keyframes floatWidget {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+    .cbt-preview-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .cbt-mock-timer { color: var(--danger); font-family: var(--font-mono); font-size: 1.1rem; }
+    .cbt-preview-body { font-size: 0.95rem; line-height: 1.5; }
+    .cbt-mock-opts { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem; }
+    .cbt-mock-opt {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      display: flex;
+      gap: 0.5rem;
+      background: #fdfdfd;
+    }
+    .cbt-mock-opt.active { border-color: var(--primary); background: #eff6ff; color: var(--primary); font-weight: 600; }
+
+    /* SECTION GENERAL */
+    section { padding: 4rem 0; }
+    .section-header { text-align: center; max-width: 650px; margin: 0 auto 3rem; }
+    .section-header h2 { font-size: 2.1rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem; }
+    .section-header p { color: var(--text-muted); font-size: 1.05rem; }
+
+    /* EXAMS GRID */
+    .exams-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.5rem;
+    }
+    .exam-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .exam-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: #cbd5e1;
+    }
+    .exam-card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1rem; }
+    .exam-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+    }
+    .exam-icon svg { width: 26px; height: 26px; }
+    .exam-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--slate); margin-bottom: 0.5rem; }
+    .exam-card p { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .exam-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* FEATURES GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+    .feature-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card .f-icon {
+      width: 44px;
+      height: 44px;
+      background: #eff6ff;
+      border-radius: 10px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .feature-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--text-muted); }
+
+    /* AUTH FORMS (LOGIN / REGISTER / FORGOT) */
+    .auth-wrapper {
+      min-height: calc(100vh - 180px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .auth-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      width: 100%;
+      max-width: 440px;
+      padding: 2.25rem;
+      position: relative;
+    }
+    .auth-header { text-align: center; margin-bottom: 1.75rem; }
+    .auth-header h2 { font-size: 1.6rem; font-weight: 800; color: var(--navy); }
+    .auth-header p { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem; }
+    .form-group { margin-bottom: 1.25rem; position: relative; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--slate); }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-size: 0.925rem;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+    .input-pass-wrap { position: relative; }
+    .toggle-pass {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .step-dot {
+      width: 28px;
+      height: 6px;
+      border-radius: 99px;
+      background: var(--border);
+      transition: all 0.3s ease;
+    }
+    .step-dot.active { background: var(--primary); width: 44px; }
+    .otp-inputs { display: flex; gap: 0.75rem; justify-content: center; margin: 1.5rem 0; }
+    .otp-input {
+      width: 50px;
+      height: 55px;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+    }
+    .otp-input:focus { border-color: var(--primary); outline: none; }
+
+    /* DASHBOARD */
+    .dashboard-view { padding: 2.5rem 0; }
+    .user-welcome-card {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--primary-dark) 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: gap;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-card span { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+    .stat-card h3 { font-size: 2rem; font-weight: 800; color: var(--navy); margin-top: 0.25rem; }
+    .table-container {
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    table.data-table th {
+      background: #f8fafc;
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      color: var(--slate);
+      border-bottom: 1px solid var(--border);
+    }
+    table.data-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--slate);
+    }
+    table.data-table tr:last-child td { border-bottom: none; }
+
+    /* INSTRUCTIONS MODAL/SCREEN */
+    .instruction-card {
+      max-width: 750px;
+      margin: 2rem auto;
+      background: white;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .instruction-list {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+      line-height: 1.8;
+      color: var(--slate);
+    }
+
+    /* FULL SCREEN CBT INTERFACE */
+    #cbt-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #f1f5f9;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .cbt-topbar {
+      height: 60px;
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      border-bottom: 3px solid var(--accent);
+    }
+    .cbt-timer {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 700;
+      background: rgba(255,255,255,0.1);
+      padding: 4px 14px;
+      border-radius: var(--radius-sm);
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .cbt-timer.timer-warning { background: #ea580c; color: white; animation: blink 1s infinite; }
+    .cbt-timer.timer-danger { background: #dc2626; color: white; animation: blink 0.5s infinite; }
+    @keyframes blink { 50% { opacity: 0.5; } }
+
+    .cbt-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-25deg);
+      font-size: 5.5vw;
+      font-weight: 900;
+      color: rgba(15, 23, 42, 0.035);
+      pointer-events: none;
+      white-space: nowrap;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .cbt-main-content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      overflow: hidden;
+      position: relative;
+    }
+    .cbt-question-panel {
+      padding: 1.75rem 2.5rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      background: white;
+      z-index: 2;
+    }
+    .q-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--bg);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .q-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+    }
+    .cbt-options-list { display: flex; flex-direction: column; gap: 0.9rem; }
+    .cbt-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      background: #fafafa;
+      transition: all 0.15s;
+    }
+    .cbt-option:hover { border-color: var(--primary-light); background: #f0f7ff; }
+    .cbt-option.selected {
+      border-color: var(--primary);
+      background: #eff6ff;
+      color: var(--primary);
+      font-weight: 600;
+      box-shadow: 0 0 0 1px var(--primary);
+    }
+    .opt-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #cbd5e1;
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .cbt-option.selected .opt-circle { border-color: var(--primary); background: var(--primary); color: white; }
+
+    .cbt-footer {
+      height: 68px;
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+    .cbt-footer-actions { display: flex; gap: 0.75rem; }
+
+    /* PALETTE DRAWER / SIDEBAR */
+    .cbt-palette-sidebar {
+      background: #f8fafc;
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      z-index: 5;
+    }
+    .palette-header { padding: 1rem; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 0.95rem; }
+    .palette-legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      padding: 0.85rem;
+      background: white;
+      font-size: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.4rem; font-weight: 500; }
+    .legend-badge {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .bg-not-visited { background: #94a3b8; }
+    .bg-visited { background: #3b82f6; }
+    .bg-answered { background: #10b981; }
+    .bg-review { background: #f59e0b; }
+
+    .palette-grid {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.6rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .palette-btn {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    .palette-btn.active-q { outline: 3px solid #0f172a; outline-offset: 1px; }
+
+    /* RESULT & PERFORMANCE */
+    .scorecard-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 100%);
+      color: white;
+      padding: 3rem 0;
+      border-radius: var(--radius-lg);
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+    .scorecard-hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .score-breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .score-box {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+    .score-box p { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; }
+    .score-box h3 { font-size: 1.8rem; font-weight: 800; color: var(--navy); margin-top: 0.25rem; }
+
+    .chart-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: white;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .donut-chart {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+    }
+    .donut-hole {
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--navy);
+    }
+    .donut-hole small { font-size: 0.7rem; font-weight: 600; color: var(--text-muted); }
+
+    /* THANK YOU ANIMATION SPLASH */
+    #splash-screen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #1e3a8a, #0f172a);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      text-align: center;
+      padding: 2rem;
+    }
+    .splash-box { animation: splashZoom 0.8s cubic-bezier(0.16, 1, 0.3, 1); max-width: 500px; }
+    @keyframes splashZoom {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .splash-progress-bar {
+      width: 220px;
+      height: 6px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 99px;
+      margin: 2rem auto 0;
+      overflow: hidden;
+    }
+    .splash-progress-inner {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      animation: fillBar 4.8s linear forwards;
+    }
+    @keyframes fillBar { 0% { width: 0%; } 100% { width: 100%; } }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+    .modal-box {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      width: 100%;
+      max-width: 480px;
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalPop {
+      0% { transform: scale(0.95); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ADMIN DASHBOARD */
+    .admin-layout { display: flex; min-height: calc(100vh - 70px); }
+    .admin-sidebar {
+      width: 260px;
+      background: var(--navy);
+      color: white;
+      padding: 1.5rem 0;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .admin-menu { display: flex; flex-direction: column; gap: 0.25rem; }
+    .admin-menu-item {
+      padding: 0.75rem 1.5rem;
+      color: #94a3b8;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .admin-menu-item:hover, .admin-menu-item.active { background: rgba(255,255,255,0.08); color: white; }
+    .admin-body { flex: 1; padding: 2rem; background: #f8fafc; overflow-y: auto; }
+
+    /* TOAST NOTIFICATION */
+    #toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .toast-msg {
+      background: var(--navy);
+      color: white;
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-left: 4px solid var(--accent);
+      animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes toastIn {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    /* FOOTER */
+    footer.main-footer {
+      margin-top: auto;
+      background: var(--navy);
+      color: #94a3b8;
+      padding: 3.5rem 0 2rem;
+      border-top: 1px solid #334155;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .footer-col h4 { color: white; margin-bottom: 1rem; font-size: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+
+    /* PRINT SCORECARD STYLES */
+    @media print {
+      body * { visibility: hidden !important; }
+      #print-area, #print-area * { visibility: visible !important; }
+      #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        padding: 20px;
+        background: white !important;
+        color: black !important;
+      }
+      .no-print { display: none !important; }
+    }
+
+    /* RESPONSIVE DESIGN BREAKPOINTS */
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .cbt-main-content { grid-template-columns: 1fr; }
+      .cbt-palette-sidebar {
+        position: fixed;
+        right: -320px;
+        top: 60px;
+        bottom: 68px;
+        width: 300px;
+        transition: right 0.3s ease;
+        box-shadow: var(--shadow-lg);
+      }
+      .cbt-palette-sidebar.open { right: 0; }
+      .palette-toggle-btn { display: inline-flex !important; }
+      .admin-layout { flex-direction: column; }
+      .admin-sidebar { width: 100%; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-lg);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .mobile-toggle { display: block; }
+      .cbt-question-panel { padding: 1.25rem; }
+      .cbt-footer { padding: 0 1rem; }
+      .btn span.btn-text-hide { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container"></div>
+
+  <!-- MAIN HEADER / NAVBAR -->
+  <header class="main-header" id="main-header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="javascript:void(0)" onclick="navigateTo('home')" class="brand-logo">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          RailPathshala <span>Pro</span>
+        </a>
+
+        <div class="nav-links" id="nav-menu">
+          <a href="javascript:void(0)" onclick="navigateTo('home')">Home</a>
+          <a href="javascript:void(0)" onclick="navigateTo('exams')">All Exams</a>
+          <a href="javascript:void(0)" onclick="navigateTo('features')">Features</a>
+          <a href="javascript:void(0)" onclick="navigateTo('about')">About Us</a>
+        </div>
+
+        <div class="nav-actions" id="nav-auth-actions">
+          <!-- Auth buttons dynamically populated -->
+        </div>
+
+        <button class="mobile-toggle" onclick="toggleNavMenu()" aria-label="Toggle Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- VIEW: HOME PAGE -->
+  <main id="view-home" class="page-view">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <div class="badge badge-primary" style="margin-bottom: 1rem;">Official-Pattern CBT Platform</div>
+            <h1>Prepare Smarter. Practice Better. <span>Crack Your Exam.</span></h1>
+            <p>RRB NTPC, Group D, SSC CGL, CHSL, GD, Bihar Police, Indian Army, CDS aur other competitive exams ke liye high-fidelity computer-based test portal.</p>
+            
+            <div class="hero-badges">
+              <div class="hero-badge-item">🎯 20 Real Questions</div>
+              <div class="hero-badge-item">⏱️ 90 Minutes Timer</div>
+              <div class="hero-badge-item">⚠️ 1/3 Negative Marking</div>
+              <div class="hero-badge-item">⚡ Instant AI Result</div>
+            </div>
+
+            <div class="hero-cta">
+              <button class="btn btn-primary" onclick="navigateTo('exams')">Start Mock Test</button>
+              <button class="btn btn-outline" onclick="navigateTo('exams')">Explore All Exams</button>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="cbt-preview-header">
+              <span>Section: General Awareness</span>
+              <span class="cbt-mock-timer">89:42 Left</span>
+            </div>
+            <div class="cbt-preview-body">
+              <strong>Q.3:</strong> Who is known as the father of the Indian Constitution?
+              <div class="cbt-mock-opts">
+                <div class="cbt-mock-opt">A. Dr. Rajendra Prasad</div>
+                <div class="cbt-mock-opt active">B. Dr. B. R. Ambedkar (Selected)</div>
+                <div class="cbt-mock-opt">C. Jawaharlal Nehru</div>
+                <div class="cbt-mock-opt">D. Sardar Vallabhbhai Patel</div>
+              </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 1.25rem;">
+              <span class="badge badge-success">Answered: 1</span>
+              <span class="badge badge-warning">Review: 2</span>
+              <span class="badge badge-primary">Palette: 20</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POPULAR EXAMS SECTION -->
+    <section id="popular-exams">
+      <div class="container">
+        <div class="section-header">
+          <h2>Popular Competitive Exams</h2>
+          <p>Curated mock tests created according to the latest TCS/NTA exam interface pattern.</p>
+        </div>
+        <div class="exams-grid" id="home-exams-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section id="features" style="background: white;">
+      <div class="container">
+        <div class="section-header">
+          <h2>Why Choose RailPathshala Pro?</h2>
+          <p>Built exclusively for Indian Railway, SSC, Police & Defence aspirants.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="f-icon">🖥️</div>
+            <h3>Real CBT Experience</h3>
+            <p>1:1 reproduction of the actual examination console used in RRB, SSC, and state tests.</p>
+          </div>
+          <div class="feature-card">
+            <div class="f-icon">⏱️</div>
+            <h3>Live Countdown Timer</h3>
+            <p>Accurate 90-minute real-time clock with automatic submission and 5-min alert prompts.</p>
+          </div>
+          <div class="feature-card">
+            <div class="f-icon">⚖️</div>
+            <h3>Realistic Negative Marking</h3>
+            <p>Accurate calculation (+1 mark for correct, -0.33 mark penalty for wrong answers).</p>
+          </div>
+          <div class="feature-card">
+            <div class="f-icon">🗺️</div>
+            <h3>Question Palette Navigation</h3>
+            <p>Instantly switch between questions, mark questions for review, and clear choices smoothly.</p>
+          </div>
+          <div class="feature-card">
+            <div class="f-icon">📊</div>
+            <h3>Instant Result & Analytics</h3>
+            <p>Immediate performance card with accuracy percentage, positive/negative marks breakdown.</p>
+          </div>
+          <div class="feature-card">
+            <div class="f-icon">🖨️</div>
+            <h3>Printable Official Scorecard</h3>
+            <p>Generate clean, printable PDF-ready mock reports for self-analysis and revision records.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- VIEW: ALL EXAMS & SEARCH -->
+  <main id="view-exams" class="page-view hidden">
+    <div class="container" style="padding: 3rem 1.25rem;">
+      <div class="section-header">
+        <h2>Mock Test Directory</h2>
+        <p>Choose your target exam and start testing your preparation now.</p>
+      </div>
+
+      <div style="max-width: 650px; margin: 0 auto 2.5rem; display: flex; flex-direction: column; gap: 1rem;">
+        <input type="text" id="exam-search-input" class="form-control" placeholder="Search exam (e.g. NTPC, SSC GD, Police, CDS)..." oninput="filterExams()">
+        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="btn btn-sm btn-outline filter-btn active" onclick="setExamFilter('All', this)">All</button>
+          <button class="btn btn-sm btn-outline filter-btn" onclick="setExamFilter('RRB', this)">RRB</button>
+          <button class="btn btn-sm btn-outline filter-btn" onclick="setExamFilter('SSC', this)">SSC</button>
+          <button class="btn btn-sm btn-outline filter-btn" onclick="setExamFilter('Police', this)">Police</button>
+          <button class="btn btn-sm btn-outline filter-btn" onclick="setExamFilter('Defence', this)">Defence</button>
+        </div>
+      </div>
+
+      <div class="exams-grid" id="all-exams-grid"></div>
+    </div>
+  </main>
+
+  <!-- VIEW: LOGIN -->
+  <main id="view-login" class="page-view hidden">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h2>Candidate Login</h2>
+          <p>Enter your credentials to access your dashboard</p>
+        </div>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Gmail / Username</label>
+            <input type="text" id="login-username" class="form-control" placeholder="aspirant@gmail.com" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-pass-wrap">
+              <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+              <button type="button" class="toggle-pass" onclick="togglePassVisibility('login-password')">👁️</button>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; font-size: 0.85rem;">
+            <label style="display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+              <input type="checkbox" id="remember-me" checked> Remember Me
+            </label>
+            <a href="javascript:void(0)" onclick="navigateTo('forgot-password')" style="color: var(--primary); font-weight: 600;">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
+            New Aspirant? <a href="javascript:void(0)" onclick="navigateTo('register')" style="color: var(--primary); font-weight: 700;">Create Account</a>
+          </div>
+          <div style="margin-top: 1rem; padding: 10px; background: #eff6ff; border-radius: var(--radius-sm); font-size: 0.8rem; text-align: center; color: var(--primary);">
+            💡 <strong>Instant Testing:</strong> Use demo login or any new user account!
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- VIEW: MULTI-STEP REGISTRATION -->
+  <main id="view-register" class="page-view hidden">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="step-indicator">
+          <div class="step-dot active" id="reg-dot-1"></div>
+          <div class="step-dot" id="reg-dot-2"></div>
+          <div class="step-dot" id="reg-dot-3"></div>
+        </div>
+
+        <!-- STEP 1: Basic Info -->
+        <div id="reg-step-1">
+          <div class="auth-header">
+            <h2>Create Aspirant Account</h2>
+            <p>Step 1 of 3: Enter your personal details</p>
+          </div>
+          <form onsubmit="handleRegStep1(event)">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="reg-name" class="form-control" placeholder="Ramesh Kumar" required>
+            </div>
+            <div class="form-group">
+              <label>Gmail Address</label>
+              <input type="email" id="reg-email" class="form-control" placeholder="ramesh@gmail.com" required>
+            </div>
+            <div class="form-group">
+              <label>Mobile Number</label>
+              <input type="tel" id="reg-phone" class="form-control" placeholder="9876543210" pattern="[0-9]{10}" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Continue to OTP</button>
+          </form>
+        </div>
+
+        <!-- STEP 2: OTP Verification -->
+        <div id="reg-step-2" class="hidden">
+          <div class="auth-header">
+            <h2>OTP Verification</h2>
+            <p>Step 2 of 3: Enter 4-digit code sent to your Gmail/Mobile</p>
+            <span class="badge badge-success" style="margin-top: 0.5rem;">OTP Sent Successfully (Use 1234)</span>
+          </div>
+          <form onsubmit="handleRegStep2(event)">
+            <div class="otp-inputs">
+              <input type="text" maxlength="1" class="otp-input" id="otp-1" required oninput="focusNext(this, 'otp-2')">
+              <input type="text" maxlength="1" class="otp-input" id="otp-2" required oninput="focusNext(this, 'otp-3')">
+              <input type="text" maxlength="1" class="otp-input" id="otp-3" required oninput="focusNext(this, 'otp-4')">
+              <input type="text" maxlength="1" class="otp-input" id="otp-4" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Verify OTP</button>
+            <button type="button" class="btn btn-outline btn-block" style="margin-top: 0.5rem;" onclick="setRegStep(1)">Back</button>
+          </form>
+        </div>
+
+        <!-- STEP 3: Account Credentials -->
+        <div id="reg-step-3" class="hidden">
+          <div class="auth-header">
+            <h2>Set Security Credentials</h2>
+            <p>Step 3 of 3: Create username and password</p>
+          </div>
+          <form onsubmit="handleRegStep3(event)">
+            <div class="form-group">
+              <label>Choose Username</label>
+              <input type="text" id="reg-user" class="form-control" placeholder="ramesh_railway" required>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="reg-pass" class="form-control" placeholder="Minimum 6 characters" minlength="6" required>
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" id="reg-pass-confirm" class="form-control" placeholder="Re-enter password" minlength="6" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Complete Registration 🎉</button>
+          </form>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem;">
+          Already have an account? <a href="javascript:void(0)" onclick="navigateTo('login')" style="color: var(--primary); font-weight: 700;">Login here</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- VIEW: FORGOT PASSWORD -->
+  <main id="view-forgot-password" class="page-view hidden">
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h2>Reset Password</h2>
+          <p>Verify your email to recover your account</p>
+        </div>
+        
+        <div id="fp-step-1">
+          <form onsubmit="handleFpSendOtp(event)">
+            <div class="form-group">
+              <label>Registered Gmail</label>
+              <input type="email" id="fp-email" class="form-control" placeholder="aspirant@gmail.com" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Reset Code</button>
+          </form>
+        </div>
+
+        <div id="fp-step-2" class="hidden">
+          <span class="badge badge-success" style="display: block; text-align: center; margin-bottom: 1rem;">Verification code: 1234</span>
+          <form onsubmit="handleFpResetPass(event)">
+            <div class="form-group">
+              <label>Enter 4-Digit OTP</label>
+              <input type="text" id="fp-otp" class="form-control" placeholder="1234" maxlength="4" required>
+            </div>
+            <div class="form-group">
+              <label>New Password</label>
+              <input type="password" id="fp-new-pass" class="form-control" placeholder="New strong password" minlength="6" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Update Password</button>
+          </form>
+        </div>
+
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a href="javascript:void(0)" onclick="navigateTo('login')" style="color: var(--primary); font-size: 0.9rem; font-weight: 600;">← Back to Sign In</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- VIEW: STUDENT DASHBOARD -->
+  <main id="view-dashboard" class="page-view hidden">
+    <div class="container dashboard-view">
+      <div class="user-welcome-card">
+        <div>
+          <h2 id="dash-welcome-name">Welcome Back, Student 👋</h2>
+          <p style="opacity: 0.85; margin-top: 0.25rem;">Target Exam: Combined Railway & SSC Competitive Stream</p>
+        </div>
+        <button class="btn btn-accent" onclick="navigateTo('exams')">+ Take New Mock</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span>Total Mock Tests</span>
+          <h3 id="stat-total-tests">10</h3>
+        </div>
+        <div class="stat-card">
+          <span>Tests Attempted</span>
+          <h3 id="stat-attempted-tests">0</h3>
+        </div>
+        <div class="stat-card">
+          <span>Average Accuracy</span>
+          <h3 id="stat-avg-acc">0%</h3>
+        </div>
+        <div class="stat-card">
+          <span>Best Score</span>
+          <h3 id="stat-best-score">0.00</h3>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom: 1.25rem; font-weight: 800;">Your Recent Test Attempts</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Exam Name</th>
+              <th>Session ID</th>
+              <th>Date</th>
+              <th>Score</th>
+              <th>Accuracy</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="student-attempts-tbody">
+            <tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--text-muted);">No mock attempts recorded yet. Take your first test today!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- VIEW: MOCK TEST INSTRUCTIONS -->
+  <main id="view-instructions" class="page-view hidden">
+    <div class="container">
+      <div class="instruction-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 1rem;">
+          <h2 id="inst-exam-name">RRB NTPC CBT Stage-1 Mock Test</h2>
+          <span class="badge badge-primary">Computer Based Test (CBT)</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; text-align: center;">
+          <div style="background: #f8fafc; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <strong style="display: block; font-size: 1.25rem; color: var(--primary);">20</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Questions</span>
+          </div>
+          <div style="background: #f8fafc; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <strong style="display: block; font-size: 1.25rem; color: var(--primary);">90 Mins</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Duration</span>
+          </div>
+          <div style="background: #f8fafc; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+            <strong style="display: block; font-size: 1.25rem; color: var(--danger);">-0.33</strong>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Negative Mark</span>
+          </div>
+        </div>
+
+        <h4 style="color: var(--navy); margin-top: 1rem;">General Guidelines & Marking Rules:</h4>
+        <ol class="instruction-list">
+          <li>The test clock has been set at the server. The countdown timer in the top right corner displays the remaining time available to you.</li>
+          <li>Each question carries <strong>1.00 Mark</strong> for the correct answer.</li>
+          <li>For each incorrect response, <strong>0.33 Mark</strong> will be deducted as negative marking.</li>
+          <li>Questions that are left unattempted will receive <strong>0 Marks</strong> (No negative deduction).</li>
+          <li>You can click on the <strong>Question Palette</strong> on the right to jump directly to any question.</li>
+          <li>You can mark questions for review if you wish to revisit them before submitting.</li>
+          <li>The exam will automatically submit when the 90-minute countdown hits <strong>00:00</strong>.</li>
+        </ol>
+
+        <div style="margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.75rem;">
+          <input type="checkbox" id="inst-confirm-check" style="width: 18px; height: 18px; cursor: pointer;">
+          <label for="inst-confirm-check" style="font-size: 0.9rem; font-weight: 600; cursor: pointer;">
+            I have read and understood all the above instructions and agree to proceed.
+          </label>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+          <button class="btn btn-outline" onclick="navigateTo('exams')">Back to Exams</button>
+          <button class="btn btn-primary" onclick="launchCBTTest()">I am Ready to Begin</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- VIEW: FULL CBT TEST SCREEN -->
+  <div id="cbt-screen" class="hidden">
+    <div class="cbt-watermark">RAILPATHSHALA PRO</div>
+
+    <!-- Top Bar -->
+    <div class="cbt-topbar">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <strong style="letter-spacing: 0.5px;">RailPathshala Pro</strong>
+        <span style="opacity: 0.4;">|</span>
+        <span id="cbt-header-exam-name" style="font-weight: 500; font-size: 0.85rem; color: #94a3b8;">RRB NTPC CBT</span>
+      </div>
+
+      <div class="cbt-timer" id="cbt-timer-display">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <span id="cbt-time-string">90:00</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: #cbd5e1;" id="cbt-session-display">RPP-CBT-XXXX</span>
+        <button class="btn btn-sm btn-outline palette-toggle-btn" style="display: none; color: white; border-color: #475569;" onclick="toggleMobilePalette()">Palette</button>
+      </div>
+    </div>
+
+    <!-- CBT Main Arena -->
+    <div class="cbt-main-content">
+      <!-- Question Section -->
+      <div class="cbt-question-panel">
+        <div>
+          <div class="q-meta-bar">
+            <span class="badge badge-primary" id="cbt-q-subject">General Awareness</span>
+            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);" id="cbt-q-counter">Question 1 of 20</span>
+          </div>
+
+          <div class="q-title" id="cbt-question-text">
+            Loading question...
+          </div>
+
+          <div class="cbt-options-list" id="cbt-options-container">
+            <!-- Options dynamically generated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Palette -->
+      <aside class="cbt-palette-sidebar" id="cbt-palette-drawer">
+        <div class="palette-header">Question Navigation Palette</div>
+        
+        <div class="palette-legend">
+          <div class="legend-item"><span class="legend-badge bg-answered"></span> Answered</div>
+          <div class="legend-item"><span class="legend-badge bg-visited"></span> Visited</div>
+          <div class="legend-item"><span class="legend-badge bg-review"></span> Review</div>
+          <div class="legend-item"><span class="legend-badge bg-not-visited"></span> Not Visited</div>
+        </div>
+
+        <div class="palette-grid" id="cbt-palette-grid">
+          <!-- 1 to 20 buttons -->
+        </div>
+
+        <div style="padding: 1rem; border-top: 1px solid var(--border); background: white;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.4rem;">
+            <span>Answered: <b id="pal-count-ans" style="color: var(--success);">0</b></span>
+            <span>Review: <b id="pal-count-rev" style="color: var(--warning);">0</b></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+            <span>Visited: <b id="pal-count-vis" style="color: var(--primary);">1</b></span>
+            <span>Left: <b id="pal-count-left" style="color: var(--text-muted);">19</b></span>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- CBT Footer Controls -->
+    <div class="cbt-footer">
+      <div class="cbt-footer-actions">
+        <button class="btn btn-outline" onclick="prevQuestion()" id="cbt-btn-prev">Previous</button>
+        <button class="btn btn-outline" style="border-color: #f59e0b; color: #b45309;" onclick="markForReview()">Mark For Review</button>
+        <button class="btn btn-outline" onclick="clearSelectedOption()">Clear Response</button>
+      </div>
+
+      <div class="cbt-footer-actions">
+        <button class="btn btn-primary" onclick="saveAndNext()">Save & Next</button>
+        <button class="btn btn-danger" onclick="confirmSubmitTest()">Submit Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU ANIMATION SPLASH SCREEN -->
+  <div id="splash-screen" class="hidden">
+    <div class="splash-box">
+      <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎉</div>
+      <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Shaandar Prayas!</h1>
+      <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 1.5rem;">
+        "Har attempt aapko aapke goal ke aur kareeb le jaata hai."
+      </p>
+      <div class="badge badge-warning" style="font-size: 0.85rem; padding: 6px 16px;">Compiling Your Exam Performance...</div>
+      <div class="splash-progress-bar">
+        <div class="splash-progress-inner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: RESULT PAGE -->
+  <main id="view-result" class="page-view hidden">
+    <div class="container" style="padding: 3rem 1.25rem;" id="print-area">
+      <div class="scorecard-hero">
+        <span class="badge badge-warning" style="margin-bottom: 0.5rem; background: rgba(255,255,255,0.2); color: white;">
+          FOR PRACTICE / MOCK TEST PURPOSE ONLY
+        </span>
+        <h1 id="res-score-display">Score: 0.00</h1>
+        <p id="res-candidate-name">Candidate: Ramesh Kumar | RRB NTPC Mock Test</p>
+        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.25rem;" id="res-session-tag">Session ID: RPP-CBT-XXXX</p>
+      </div>
+
+      <div class="score-breakdown-grid">
+        <div class="score-box">
+          <p>Total Questions</p>
+          <h3>20</h3>
+        </div>
+        <div class="score-box">
+          <p>Attempted</p>
+          <h3 id="res-attempted" style="color: var(--primary);">0</h3>
+        </div>
+        <div class="score-box">
+          <p>Correct Answers</p>
+          <h3 id="res-correct" style="color: var(--success);">0</h3>
+        </div>
+        <div class="score-box">
+          <p>Wrong Answers</p>
+          <h3 id="res-wrong" style="color: var(--danger);">0</h3>
+        </div>
+        <div class="score-box">
+          <p>Positive Marks</p>
+          <h3 id="res-pos-marks" style="color: var(--success);">+0.00</h3>
+        </div>
+        <div class="score-box">
+          <p>Negative Penalty</p>
+          <h3 id="res-neg-marks" style="color: var(--danger);">-0.00</h3>
+        </div>
+      </div>
+
+      <!-- Performance Visual Graph -->
+      <div class="chart-container">
+        <div class="donut-chart" id="res-donut-chart">
+          <div class="donut-hole">
+            <span id="res-donut-pct">0%</span>
+            <small>Accuracy</small>
+          </div>
+        </div>
+
+        <div style="flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">
+              <span>Correct Accuracy</span>
+              <span id="res-bar-acc-val">0%</span>
+            </div>
+            <div style="height: 10px; background: #e2e8f0; border-radius: 99px; overflow: hidden;">
+              <div id="res-bar-acc" style="height: 100%; width: 0%; background: var(--success); transition: width 1s;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px;">
+              <span>Attempt Rate</span>
+              <span id="res-bar-att-val">0%</span>
+            </div>
+            <div style="height: 10px; background: #e2e8f0; border-radius: 99px; overflow: hidden;">
+              <div id="res-bar-att" style="height: 100%; width: 0%; background: var(--primary); transition: width 1s;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Motivational Card -->
+      <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: var(--radius-lg); padding: 1.5rem; margin: 2rem 0; text-align: center;">
+        <h4 style="color: #92400e; font-weight: 700; margin-bottom: 0.4rem;">🎯 Keep Practicing. Keep Improving.</h4>
+        <p style="color: #b45309; font-size: 0.95rem; max-width: 800px; margin: 0 auto;">
+          "Mock test ka score aapki final exam performance ka final result nahi hai. Apni mistakes ko identify karein, weak topics par practice karein aur next attempt mein aur better perform karein."
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 1rem; justify-content: center;" class="no-print">
+        <button class="btn btn-primary" onclick="window.print()">🖨️ Print Scorecard</button>
+        <button class="btn btn-outline" onclick="navigateTo('dashboard')">Go to Dashboard</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- VIEW: ADMIN PANEL -->
+  <main id="view-admin" class="page-view hidden">
+    <!-- Admin Login Screen -->
+    <div id="admin-login-box" class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h2>Staff / Admin Portal</h2>
+          <p>Login with administrative credentials</p>
+        </div>
+        <form onsubmit="handleAdminLogin(event)">
+          <div class="form-group">
+            <label>Admin ID</label>
+            <input type="email" id="admin-email" class="form-control" value="admin@railpathshala.test" required>
+          </div>
+          <div class="form-group">
+            <label>Admin Password</label>
+            <input type="password" id="admin-password" class="form-control" value="Admin@12345" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Authorize Access</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Admin Panel Workspace -->
+    <div id="admin-workspace" class="admin-layout hidden">
+      <aside class="admin-sidebar">
+        <div>
+          <div style="padding: 0 1.5rem 1.5rem; font-weight: 800; font-size: 1.1rem; border-bottom: 1px solid #334155;">
+            RPP Admin
+          </div>
+          <div class="admin-menu" style="margin-top: 1rem;">
+            <div class="admin-menu-item active" onclick="setAdminTab('dash')">📊 Overview</div>
+            <div class="admin-menu-item" onclick="setAdminTab('questions')">📝 Question Bank</div>
+            <div class="admin-menu-item" onclick="setAdminTab('add-q')">➕ Add Question</div>
+            <div class="admin-menu-item" onclick="setAdminTab('students')">👥 Students</div>
+            <div class="admin-menu-item" onclick="setAdminTab('results')">📑 Test Results</div>
+          </div>
+        </div>
+        <div style="padding: 1.5rem;">
+          <button class="btn btn-outline btn-block" style="color: white; border-color: #475569;" onclick="handleAdminLogout()">Logout</button>
+        </div>
+      </aside>
+
+      <div class="admin-body">
+        <!-- TAB: DASHBOARD -->
+        <div id="admin-tab-dash">
+          <h2 style="margin-bottom: 1.5rem; font-weight: 800;">Administration Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span>Total Aspirants</span>
+              <h3 id="adm-stat-students">1</h3>
+            </div>
+            <div class="stat-card">
+              <span>Total Questions</span>
+              <h3 id="adm-stat-questions">20</h3>
+            </div>
+            <div class="stat-card">
+              <span>Supported Exams</span>
+              <h3>9</h3>
+            </div>
+            <div class="stat-card">
+              <span>Total Submissions</span>
+              <h3 id="adm-stat-attempts">0</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: QUESTIONS -->
+        <div id="admin-tab-questions" class="hidden">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h2>Master Question Bank</h2>
+            <button class="btn btn-primary btn-sm" onclick="setAdminTab('add-q')">+ Add New Question</button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Subject</th>
+                  <th>Question</th>
+                  <th>Ans Key</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="adm-questions-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB: ADD QUESTION -->
+        <div id="admin-tab-add-q" class="hidden">
+          <h2 style="margin-bottom: 1.5rem;">Add Question to Bank</h2>
+          <div style="background: white; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; max-width: 800px;">
+            <form onsubmit="handleAdminAddQuestion(event)">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                  <label>Subject</label>
+                  <select id="add-q-subject" class="form-control" required>
+                    <option value="General Knowledge">General Knowledge</option>
+                    <option value="General Science">General Science</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Reasoning">Reasoning</option>
+                    <option value="Current Affairs">Current Affairs</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Target Exam</label>
+                  <select id="add-q-exam" class="form-control" required>
+                    <option value="All">All Competitive Exams</option>
+                    <option value="RRB NTPC">RRB NTPC</option>
+                    <option value="SSC CGL">SSC CGL</option>
+                    <option value="Bihar Police">Bihar Police</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Question Text (Hindi / English)</label>
+                <textarea id="add-q-text" class="form-control" rows="3" placeholder="Enter full question statement..." required></textarea>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                  <label>Option A</label>
+                  <input type="text" id="add-q-opt0" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Option B</label>
+                  <input type="text" id="add-q-opt1" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Option C</label>
+                  <input type="text" id="add-q-opt2" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label>Option D</label>
+                  <input type="text" id="add-q-opt3" class="form-control" required>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                  <label>Correct Answer</label>
+                  <select id="add-q-answer" class="form-control" required>
+                    <option value="0">Option A</option>
+                    <option value="1">Option B</option>
+                    <option value="2">Option C</option>
+                    <option value="3">Option D</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Explanation</label>
+                  <input type="text" id="add-q-exp" class="form-control" placeholder="Short rationale...">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Save Question to LocalStorage</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- TAB: STUDENTS -->
+        <div id="admin-tab-students" class="hidden">
+          <h2 style="margin-bottom: 1.5rem;">Registered Aspirants</h2>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Gmail</th>
+                  <th>Mobile</th>
+                  <th>Username</th>
+                  <th>Attempts</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="adm-students-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB: RESULTS -->
+        <div id="admin-tab-results" class="hidden">
+          <h2 style="margin-bottom: 1.5rem;">Test Submission History</h2>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Candidate</th>
+                  <th>Exam</th>
+                  <th>Session ID</th>
+                  <th>Final Score</th>
+                  <th>Accuracy</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody id="adm-results-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- CONFIRM SUBMISSION MODAL -->
+  <div id="submit-confirm-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--navy); margin-bottom: 0.5rem;">Submit CBT Mock Test?</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+        Are you sure you want to conclude your examination session?
+      </p>
+
+      <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+          <span>Answered Questions:</span>
+          <strong id="modal-summary-ans" style="color: var(--success);">0</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+          <span>Unanswered / Left:</span>
+          <strong id="modal-summary-unans" style="color: var(--danger);">20</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+          <span>Marked for Review:</span>
+          <strong id="modal-summary-rev" style="color: var(--warning);">0</strong>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+        <button class="btn btn-outline" onclick="closeSubmitModal()">Go Back</button>
+        <button class="btn btn-danger" onclick="executeFinalSubmit()">Confirm Submission</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer" id="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col" style="max-width: 320px;">
+          <h3 style="color: white; font-weight: 800; margin-bottom: 0.75rem;">RailPathshala Pro</h3>
+          <p style="font-size: 0.875rem; line-height: 1.6;">Practice Today. Perform Better Tomorrow. Dedicated mock testing solution built to replicate TCS/NTA exam environment.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Exams</h4>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="navigateTo('exams')">RRB NTPC & Group D</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('exams')">SSC CGL & CHSL</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('exams')">SSC GD Constable</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('exams')">Bihar Police & Defence</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="navigateTo('home')">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('exams')">Mock Tests</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('admin')">Admin Panel</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Portal Admin</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.75rem;">Portal management & question curation desk.</p>
+          <button class="btn btn-sm btn-outline" style="color: white; border-color: #475569;" onclick="navigateTo('admin')">Staff Login</button>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 RailPathshala Pro. Strictly for mock practice and preparation. Not an official government exam agency.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       DATA INITIALIZATION & STATE MANAGEMENT (LOCALSTORAGE)
+       ========================================================= */
+
+    const INITIAL_EXAMS = [
+      { id: "rrb-ntpc", name: "RRB NTPC", cat: "RRB", desc: "Non-Technical Popular Categories (Graduate & Under-grad)", questions: 20, time: 90, icon: "🚆" },
+      { id: "rrb-group-d", name: "RRB Group D", cat: "RRB", desc: "Railway Level-1 Posts computer based written mock test", questions: 20, time: 90, icon: "🚂" },
+      { id: "ssc-gd", name: "SSC GD Constable", cat: "SSC", desc: "General Duty Constable in CAPFs, SSF, Rifleman in Assam Rifles", questions: 20, time: 90, icon: "🎖️" },
+      { id: "ssc-chsl", name: "SSC CHSL", cat: "SSC", desc: "Combined Higher Secondary Level 10+2 Tier-I Examination", questions: 20, time: 90, icon: "📑" },
+      { id: "ssc-cgl", name: "SSC CGL", cat: "SSC", desc: "Combined Graduate Level Tier-I high competition mock exam", questions: 20, time: 90, icon: "🏛️" },
+      { id: "bihar-police", name: "Bihar Police", cat: "Police", desc: "Bihar Police Constable and Sub-Inspector entrance test", questions: 20, time: 90, icon: "🚓" },
+      { id: "indian-army", name: "Indian Army", cat: "Defence", desc: "Agniveer General Duty & Technical entrance recruitment test", questions: 20, time: 90, icon: "🛡️" },
+      { id: "cds", name: "CDS", cat: "Defence", desc: "Combined Defence Services Examination by UPSC", questions: 20, time: 90, icon: "✈️" },
+      { id: "combined", name: "SSC All Exams", cat: "SSC", desc: "Comprehensive combined pattern mock for all Central SSC jobs", questions: 20, time: 90, icon: "📚" }
+    ];
+
+    const INITIAL_QUESTIONS = [
+      { id: 1, subject: "General Knowledge", question: "भारत की राजधानी क्या है?", options: ["Mumbai", "New Delhi", "Kolkata", "Chennai"], answer: 1, explanation: "New Delhi is the capital of India." },
+      { id: 2, subject: "General Knowledge", question: "Which river is known as the 'Sorrow of Bihar'?", options: ["Ganga", "Son", "Kosi", "Gandak"], answer: 2, explanation: "Kosi river causes recurring floods in Bihar." },
+      { id: 3, subject: "General Science", question: "What is the chemical symbol of Iron?", options: ["Ir", "Fe", "Au", "Pb"], answer: 1, explanation: "Fe comes from the Latin word Ferrum." },
+      { id: 4, subject: "Mathematics", question: "If 15 men can complete a work in 20 days, how many days will 10 men take to complete the same work?", options: ["25 days", "30 days", "35 days", "40 days"], answer: 1, explanation: "M1*D1 = M2*D2 => 15*20 = 10*D2 => D2 = 30 days." },
+      { id: 5, subject: "Reasoning", question: "Select the related word: Knife : Cut :: Pen : ?", options: ["Ink", "Paper", "Write", "Draw"], answer: 2, explanation: "A knife is used to cut; a pen is used to write." },
+      { id: 6, subject: "General Science", question: "Which organelle is known as the 'Powerhouse of the Cell'?", options: ["Ribosome", "Nucleus", "Mitochondria", "Golgi apparatus"], answer: 2, explanation: "Mitochondria produces ATP." },
+      { id: 7, subject: "General Knowledge", question: "Who was the first Governor-General of independent India?", options: ["Lord Mountbatten", "C. Rajagopalachari", "Dr. Rajendra Prasad", "Jawaharlal Nehru"], answer: 0, explanation: "Lord Mountbatten was the first Governor-General of independent India." },
+      { id: 8, subject: "Reasoning", question: "Find the missing number in the series: 2, 6, 12, 20, 30, ?", options: ["40", "42", "44", "46"], answer: 1, explanation: "Pattern: +4, +6, +8, +10, +12 => 30 + 12 = 42." },
+      { id: 9, subject: "Mathematics", question: "What is the value of (25% of 400) + (15% of 200)?", options: ["120", "130", "140", "150"], answer: 1, explanation: "100 + 30 = 130." },
+      { id: 10, subject: "General Knowledge", question: "Where are the headquarters of the Indian Railway located?", options: ["Kolkata", "Mumbai", "New Delhi", "Gorakhpur"], answer: 2, explanation: "Rail Bhavan is in New Delhi." },
+      { id: 11, subject: "General Science", question: "What is the speed of light in a vacuum?", options: ["3 × 10^8 m/s", "3 × 10^6 m/s", "3 × 10^5 km/s", "Both A and C"], answer: 3, explanation: "3x10^8 m/s is equivalent to 3x10^5 km/s." },
+      { id: 12, subject: "Hindi", question: "'सूर्योदय' शब्द का सही संधि विच्छेद क्या है?", options: ["सूर्य + उदय", "सूर्यो + दय", "सूर्य + दय", "सूर्या + उदय"], answer: 0, explanation: "सूर्य + उदय = सूर्योदय (गुण स्वर संधि)." },
+      { id: 13, subject: "English", question: "Choose the correct synonym of 'DILIGENT':", options: ["Lazy", "Hardworking", "Clever", "Careless"], answer: 1, explanation: "Diligent means showing care and conscientiousness in work." },
+      { id: 14, subject: "Mathematics", question: "The simple interest on ₹5000 at 10% per annum for 3 years is:", options: ["₹1200", "₹1500", "₹1800", "₹2000"], answer: 1, explanation: "SI = (5000 * 10 * 3) / 100 = ₹1500." },
+      { id: 15, subject: "Reasoning", question: "If A = 1, CAT = 24, then POLICE = ?", options: ["60", "63", "65", "68"], answer: 0, explanation: "P(16)+O(15)+L(12)+I(9)+C(3)+E(5) = 60." },
+      { id: 16, subject: "Current Affairs", question: "Which is the highest civilian award of the Republic of India?", options: ["Padma Vibhushan", "Bharat Ratna", "Param Vir Chakra", "Padma Bhushan"], answer: 1, explanation: "Bharat Ratna is the highest civilian award." },
+      { id: 17, subject: "General Science", question: "Which gas is responsible for the greenhouse effect the most?", options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], answer: 2, explanation: "CO2 is the primary greenhouse gas emitted through human activities." },
+      { id: 18, subject: "General Knowledge", question: "In which year was the Battle of Plassey fought?", options: ["1757", "1764", "1857", "1782"], answer: 0, explanation: "The Battle of Plassey took place on 23 June 1757." },
+      { id: 19, subject: "Mathematics", question: "The perimeter of a square is 48 cm. Its area is:", options: ["120 sq cm", "144 sq cm", "196 sq cm", "160 sq cm"], answer: 1, explanation: "Side = 48/4 = 12 cm. Area = 12 * 12 = 144 sq cm." },
+      { id: 20, subject: "Reasoning", question: "Odd one out: Apple, Mango, Potato, Banana", options: ["Apple", "Mango", "Potato", "Banana"], answer: 2, explanation: "Potato is a vegetable/stem, while others are fruits." }
+    ];
+
+    // Initialize LocalStorage if empty
+    if (!localStorage.getItem('rpp_users')) {
+      const demoUser = {
+        name: "Ramesh Kumar",
+        email: "aspirant@gmail.com",
+        phone: "9876543210",
+        username: "ramesh",
+        password: "password123",
+        created: new Date().toISOString()
+      };
+      localStorage.setItem('rpp_users', JSON.stringify([demoUser]));
+    }
+    if (!localStorage.getItem('rpp_questions')) {
+      localStorage.setItem('rpp_questions', JSON.stringify(INITIAL_QUESTIONS));
+    }
+    if (!localStorage.getItem('rpp_attempts')) {
+      localStorage.setItem('rpp_attempts', JSON.stringify([]));
+    }
+
+    // STATE VARIABLES
+    let currentUser = JSON.parse(localStorage.getItem('rpp_current_user')) || null;
+    let currentExam = INITIAL_EXAMS[0];
+    let testQuestions = [];
+    let currentQIndex = 0;
+    let questionStates = []; // { visited: false, answered: false, markedForReview: false, selectedAnswer: null }
+    let testTimerInterval = null;
+    let secondsLeft = 90 * 60; // 90 minutes
+    let isSubmitting = false;
+    let currentSessionId = "";
+    let registrationData = {};
+
+    /* =========================================================
+       TOAST NOTIFICATION ENGINE
+       ========================================================= */
+    function showToast(msg) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast-msg';
+      toast.innerHTML = `<span>✓</span><span>${msg}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3200);
+    }
+
+    /* =========================================================
+       NAVIGATION & VIEW ROUTING ENGINE
+       ========================================================= */
+    function navigateTo(viewId) {
+      const views = document.querySelectorAll('.page-view');
+      views.forEach(v => v.classList.add('hidden'));
+
+      // Close mobile menu if open
+      document.getElementById('nav-menu').classList.remove('open');
+
+      const target = document.getElementById('view-' + viewId);
+      if (target) {
+        target.classList.remove('hidden');
+        window.scrollTo(0, 0);
+      }
+
+      updateNavbar();
+
+      if (viewId === 'dashboard') {
+        renderStudentDashboard();
+      } else if (viewId === 'exams') {
+        renderExamsGrid('all-exams-grid', INITIAL_EXAMS);
+      } else if (viewId === 'admin') {
+        checkAdminSession();
+      }
+    }
+
+    function toggleNavMenu() {
+      document.getElementById('nav-menu').classList.toggle('open');
+    }
+
+    function updateNavbar() {
+      const actions = document.getElementById('nav-auth-actions');
+      if (currentUser) {
+        actions.innerHTML = `
+          <button class="btn btn-outline btn-sm" onclick="navigateTo('dashboard')">Dashboard</button>
+          <button class="btn btn-primary btn-sm" onclick="navigateTo('exams')">Start Test</button>
+          <button class="btn btn-secondary btn-sm" onclick="handleLogout()">Logout</button>
+        `;
+      } else {
+        actions.innerHTML = `
+          <button class="btn btn-outline btn-sm" onclick="navigateTo('login')">Login</button>
+          <button class="btn btn-primary btn-sm" onclick="navigateTo('exams')">Start Test</button>
+        `;
+      }
+    }
+
+    /* =========================================================
+       EXAMS RENDERING & FILTERING
+       ========================================================= */
+    function renderExamsGrid(containerId, exams) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = exams.map(e => `
+        <div class="exam-card">
+          <div>
+            <div class="exam-card-top">
+              <div class="exam-icon">${e.icon}</div>
+              <span class="badge badge-primary">${e.cat}</span>
+            </div>
+            <h3>${e.name}</h3>
+            <p>${e.desc}</p>
+            <div class="exam-meta">
+              <span class="badge badge-warning">20 Questions</span>
+              <span class="badge badge-warning">90 Mins</span>
+              <span class="badge badge-danger">-0.33 Neg</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block" onclick="startExamInstructions('${e.id}')">Start Test</button>
+        </div>
+      `).join('');
+    }
+
+    function filterExams() {
+      const q = document.getElementById('exam-search-input').value.toLowerCase();
+      const filtered = INITIAL_EXAMS.filter(e => e.name.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q) || e.cat.toLowerCase().includes(q));
+      renderExamsGrid('all-exams-grid', filtered);
+    }
+
+    function setExamFilter(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      if (cat === 'All') {
+        renderExamsGrid('all-exams-grid', INITIAL_EXAMS);
+      } else {
+        renderExamsGrid('all-exams-grid', INITIAL_EXAMS.filter(e => e.cat === cat));
+      }
+    }
+
+    /* =========================================================
+       AUTHENTICATION: REGISTRATION & LOGIN & FORGOT PASSWORD
+       ========================================================= */
+    function togglePassVisibility(id) {
+      const f = document.getElementById(id);
+      f.type = f.type === 'password' ? 'text' : 'password';
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const userOrEmail = document.getElementById('login-username').value.trim();
+      const pass = document.getElementById('login-password').value;
+
+      const users = JSON.parse(localStorage.getItem('rpp_users')) || [];
+      const match = users.find(u => (u.email === userOrEmail || u.username === userOrEmail) && u.password === pass);
+
+      if (match) {
+        currentUser = match;
+        localStorage.setItem('rpp_current_user', JSON.stringify(currentUser));
+        showToast("Login successful ✓");
+        navigateTo('dashboard');
+      } else {
+        // Safe Demo Fallback if no user matches
+        if (confirm("Credentials not matched. Would you like to login with a instant Demo Aspirant account?")) {
+          currentUser = users[0] || { name: "Demo Student", email: userOrEmail, username: "student" };
+          localStorage.setItem('rpp_current_user', JSON.stringify(currentUser));
+          showToast("Demo login activated ✓");
+          navigateTo('dashboard');
+        }
+      }
+    }
+
+    function handleLogout() {
+      currentUser = null;
+      localStorage.removeItem('rpp_current_user');
+      showToast("Logged out successfully");
+      navigateTo('home');
+    }
+
+    // MULTI-STEP REGISTRATION
+    function setRegStep(step) {
+      [1, 2, 3].forEach(s => {
+        document.getElementById(`reg-step-${s}`).classList.toggle('hidden', s !== step);
+        const dot = document.getElementById(`reg-dot-${s}`);
+        if (s <= step) dot.classList.add('active'); else dot.classList.remove('active');
+      });
+    }
+
+    function handleRegStep1(e) {
+      e.preventDefault();
+      registrationData.name = document.getElementById('reg-name').value.trim();
+      registrationData.email = document.getElementById('reg-email').value.trim();
+      registrationData.phone = document.getElementById('reg-phone').value.trim();
+
+      if (!registrationData.name || !registrationData.email || !registrationData.phone) {
+        alert("Please complete all fields");
+        return;
+      }
+      setRegStep(2);
+      showToast("OTP sent successfully to " + registrationData.email);
+    }
+
+    function focusNext(curr, nextId) {
+      if (curr.value.length >= 1 && nextId) {
+        document.getElementById(nextId).focus();
+      }
+    }
+
+    function handleRegStep2(e) {
+      e.preventDefault();
+      const otp = (document.getElementById('otp-1').value +
+                   document.getElementById('otp-2').value +
+                   document.getElementById('otp-3').value +
+                   document.getElementById('otp-4').value);
+      if (otp === "1234") {
+        showToast("OTP Verified ✓");
+        setRegStep(3);
+      } else {
+        alert("Invalid OTP! Please use demo OTP: 1234");
+      }
+    }
+
+    function handleRegStep3(e) {
+      e.preventDefault();
+      const user = document.getElementById('reg-user').value.trim();
+      const pass = document.getElementById('reg-pass').value;
+      const pass2 = document.getElementById('reg-pass-confirm').value;
+
+      if (pass !== pass2) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      registrationData.username = user;
+      registrationData.password = pass;
+      registrationData.created = new Date().toISOString();
+
+      const users = JSON.parse(localStorage.getItem('rpp_users')) || [];
+      users.push(registrationData);
+      localStorage.setItem('rpp_users', JSON.stringify(users));
+
+      showToast("Registration Successful 🎉");
+      setRegStep(1);
+      navigateTo('login');
+    }
+
+    // FORGOT PASSWORD
+    function handleFpSendOtp(e) {
+      e.preventDefault();
+      document.getElementById('fp-step-1').classList.add('hidden');
+      document.getElementById('fp-step-2').classList.remove('hidden');
+      showToast("Reset code sent (1234)");
+    }
+
+    function handleFpResetPass(e) {
+      e.preventDefault();
+      const otp = document.getElementById('fp-otp').value.trim();
+      const newPass = document.getElementById('fp-new-pass').value;
+      if (otp !== "1234") {
+        alert("Invalid OTP! Enter 1234");
+        return;
+      }
+      showToast("Password updated successfully ✓");
+      document.getElementById('fp-step-2').classList.add('hidden');
+      document.getElementById('fp-step-1').classList.remove('hidden');
+      navigateTo('login');
+    }
+
+    /* =========================================================
+       STUDENT DASHBOARD
+       ========================================================= */
+    function renderStudentDashboard() {
+      const nameElem = document.getElementById('dash-welcome-name');
+      if (currentUser) {
+        nameElem.textContent = `Welcome Back, ${currentUser.name || currentUser.username} 👋`;
+      }
+
+      const allAttempts = JSON.parse(localStorage.getItem('rpp_attempts')) || [];
+      const userAttempts = currentUser ? allAttempts.filter(a => a.userEmail === currentUser.email || a.username === currentUser.username) : allAttempts;
+
+      document.getElementById('stat-attempted-tests').textContent = userAttempts.length;
+
+      if (userAttempts.length > 0) {
+        const avgAcc = userAttempts.reduce((acc, curr) => acc + parseFloat(curr.accuracy || 0), 0) / userAttempts.length;
+        const bestScore = Math.max(...userAttempts.map(a => parseFloat(a.finalScore || 0)));
+        document.getElementById('stat-avg-acc').textContent = avgAcc.toFixed(1) + "%";
+        document.getElementById('stat-best-score').textContent = bestScore.toFixed(2);
+      } else {
+        document.getElementById('stat-avg-acc').textContent = "0%";
+        document.getElementById('stat-best-score').textContent = "0.00";
+      }
+
+      const tbody = document.getElementById('student-attempts-tbody');
+      if (userAttempts.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 2rem; color: var(--text-muted);">No mock attempts yet. Click 'Take New Mock' to begin!</td></tr>`;
+      } else {
+        tbody.innerHTML = userAttempts.slice().reverse().map(a => `
+          <tr>
+            <td><strong>${a.examName}</strong></td>
+            <td><code style="font-family: var(--font-mono); font-size:0.8rem;">${a.sessionId}</code></td>
+            <td>${a.date}</td>
+            <td><strong style="color: var(--primary);">${a.finalScore}</strong> / 20</td>
+            <td><span class="badge ${parseFloat(a.accuracy) >= 70 ? 'badge-success' : 'badge-warning'}">${a.accuracy}%</span></td>
+            <td><button class="btn btn-sm btn-outline" onclick="viewHistoricalResult('${a.sessionId}')">View Result</button></td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    /* =========================================================
+       CBT TEST ENGINE & CONTROLLER
+       ========================================================= */
+    function startExamInstructions(examId) {
+      const exam = INITIAL_EXAMS.find(e => e.id === examId) || INITIAL_EXAMS[0];
+      currentExam = exam;
+      document.getElementById('inst-exam-name').textContent = `${exam.name} CBT Stage-1 Mock Test`;
+      document.getElementById('inst-confirm-check').checked = false;
+      navigateTo('instructions');
+    }
+
+    function generateSessionId() {
+      const rand = Math.random().toString(36).substring(2, 8).toUpperCase();
+      const code = Math.floor(1000 + Math.random() * 9000);
+      return `RPP-CBT-${rand}-${code}`;
+    }
+
+    function launchCBTTest() {
+      const check = document.getElementById('inst-confirm-check');
+      if (!check.checked) {
+        alert("Please acknowledge that you have read and understood the instructions.");
+        return;
+      }
+
+      // Load questions from local storage
+      const allQ = JSON.parse(localStorage.getItem('rpp_questions')) || INITIAL_QUESTIONS;
+      testQuestions = allQ.slice(0, 20); // 20 questions
+
+      // Initialize states
+      questionStates = testQuestions.map(() => ({
+        visited: false,
+        answered: false,
+        markedForReview: false,
+        selectedAnswer: null
+      }));
+
+      // Question 1 visited initially
+      questionStates[0].visited = true;
+      currentQIndex = 0;
+      isSubmitting = false;
+      currentSessionId = generateSessionId();
+
+      document.getElementById('cbt-session-display').textContent = currentSessionId;
+      document.getElementById('cbt-header-exam-name').textContent = currentExam.name + " CBT Mock";
+
+      // Build Palette buttons
+      const palGrid = document.getElementById('cbt-palette-grid');
+      palGrid.innerHTML = "";
+      for (let i = 0; i < testQuestions.length; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'palette-btn bg-not-visited';
+        btn.id = `palette-btn-${i}`;
+        btn.textContent = i + 1;
+        btn.onclick = () => jumpToQuestion(i);
+        palGrid.appendChild(btn);
+      }
+
+      // Show CBT Screen full screen
+      document.getElementById('cbt-screen').classList.remove('hidden');
+
+      // Start 90 mins timer
+      secondsLeft = 90 * 60;
+      startCbtTimer();
+
+      renderQuestion(currentQIndex);
+      updatePaletteUI();
+    }
+
+    function startCbtTimer() {
+      clearInterval(testTimerInterval);
+      const timerDisplay = document.getElementById('cbt-timer-display');
+      const timeStr = document.getElementById('cbt-time-string');
+
+      function tick() {
+        if (secondsLeft <= 0) {
+          clearInterval(testTimerInterval);
+          timeStr.textContent = "00:00";
+          showToast("Time expired! Automatically submitting test...");
+          executeFinalSubmit();
+          return;
+        }
+
+        const mins = Math.floor(secondsLeft / 60);
+        const secs = secondsLeft % 60;
+        timeStr.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+
+        // Warnings at 5 mins and 1 min
+        if (secondsLeft <= 60) {
+          timerDisplay.className = "cbt-timer timer-danger";
+        } else if (secondsLeft <= 300) {
+          timerDisplay.className = "cbt-timer timer-warning";
+        } else {
+          timerDisplay.className = "cbt-timer";
+        }
+
+        secondsLeft--;
+      }
+
+      tick();
+      testTimerInterval = setInterval(tick, 1000);
+    }
+
+    function renderQuestion(index) {
+      currentQIndex = index;
+      const q = testQuestions[index];
+      const state = questionStates[index];
+      state.visited = true;
+
+      document.getElementById('cbt-q-counter').textContent = `Question ${index + 1} of ${testQuestions.length}`;
+      document.getElementById('cbt-q-subject').textContent = q.subject || "General Study";
+      document.getElementById('cbt-question-text').textContent = `Q.${index + 1}: ${q.question}`;
+
+      const optsContainer = document.getElementById('cbt-options-container');
+      optsContainer.innerHTML = "";
+
+      const optLetters = ['A', 'B', 'C', 'D'];
+      q.options.forEach((optText, optIdx) => {
+        const isSel = state.selectedAnswer === optIdx;
+        const optDiv = document.createElement('div');
+        optDiv.className = `cbt-option ${isSel ? 'selected' : ''}`;
+        optDiv.innerHTML = `
+          <div class="opt-circle">${optLetters[optIdx]}</div>
+          <div>${optText}</div>
+        `;
+        optDiv.onclick = () => selectOption(optIdx);
+        optsContainer.appendChild(optDiv);
+      });
+
+      document.getElementById('cbt-btn-prev').disabled = index === 0;
+      updatePaletteUI();
+    }
+
+    function selectOption(optIdx) {
+      const state = questionStates[currentQIndex];
+      state.selectedAnswer = optIdx;
+      state.answered = true;
+      renderQuestion(currentQIndex);
+    }
+
+    function clearSelectedOption() {
+      const state = questionStates[currentQIndex];
+      state.selectedAnswer = null;
+      state.answered = false;
+      renderQuestion(currentQIndex);
+      showToast("Response cleared");
+    }
+
+    function markForReview() {
+      const state = questionStates[currentQIndex];
+      state.markedForReview = !state.markedForReview;
+      showToast(state.markedForReview ? "Marked for review" : "Unmarked from review");
+      updatePaletteUI();
+    }
+
+    function saveAndNext() {
+      const state = questionStates[currentQIndex];
+      if (state.selectedAnswer !== null) {
+        state.answered = true;
+      }
+      if (currentQIndex < testQuestions.length - 1) {
+        currentQIndex++;
+        renderQuestion(currentQIndex);
+      } else {
+        showToast("Reached last question. Review or submit test.");
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        renderQuestion(currentQIndex);
+      }
+    }
+
+    function jumpToQuestion(index) {
+      if (index >= 0 && index < testQuestions.length) {
+        renderQuestion(index);
+        // On mobile close palette after selection
+        document.getElementById('cbt-palette-drawer').classList.remove('open');
+      }
+    }
+
+    function toggleMobilePalette() {
+      document.getElementById('cbt-palette-drawer').classList.toggle('open');
+    }
+
+    function updatePaletteUI() {
+      let ans = 0, rev = 0, vis = 0, unvisited = 0;
+
+      questionStates.forEach((st, idx) => {
+        const btn = document.getElementById(`palette-btn-${idx}`);
+        if (!btn) return;
+
+        btn.className = "palette-btn";
+        if (idx === currentQIndex) {
+          btn.classList.add('active-q');
+        }
+
+        if (st.markedForReview) {
+          btn.classList.add('bg-review');
+          rev++;
+        } else if (st.answered && st.selectedAnswer !== null) {
+          btn.classList.add('bg-answered');
+          ans++;
+        } else if (st.visited) {
+          btn.classList.add('bg-visited');
+          vis++;
+        } else {
+          btn.classList.add('bg-not-visited');
+          unvisited++;
+        }
+      });
+
+      document.getElementById('pal-count-ans').textContent = ans;
+      document.getElementById('pal-count-rev').textContent = rev;
+      document.getElementById('pal-count-vis').textContent = vis;
+      document.getElementById('pal-count-left').textContent = unvisited;
+    }
+
+    /* =========================================================
+       SUBMIT MODAL & RESULT CALCULATION (NEGATIVE MARKING)
+       ========================================================= */
+    function confirmSubmitTest() {
+      let ans = 0, rev = 0, unans = 0;
+      questionStates.forEach(st => {
+        if (st.answered && st.selectedAnswer !== null) ans++;
+        else unans++;
+        if (st.markedForReview) rev++;
+      });
+
+      document.getElementById('modal-summary-ans').textContent = ans;
+      document.getElementById('modal-summary-unans').textContent = unans;
+      document.getElementById('modal-summary-rev').textContent = rev;
+      document.getElementById('submit-confirm-modal').classList.remove('hidden');
+    }
+
+    function closeSubmitModal() {
+      document.getElementById('submit-confirm-modal').classList.add('hidden');
+    }
+
+    function executeFinalSubmit() {
+      if (isSubmitting) return;
+      isSubmitting = true;
+      closeSubmitModal();
+      clearInterval(testTimerInterval);
+
+      // Calculate Negative Marking Score
+      let correctCount = 0;
+      let wrongCount = 0;
+      let unattemptedCount = 0;
+
+      testQuestions.forEach((q, idx) => {
+        const st = questionStates[idx];
+        if (st.selectedAnswer === null || st.selectedAnswer === undefined) {
+          unattemptedCount++;
+        } else if (st.selectedAnswer === q.answer) {
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+      });
+
+      const positiveMarks = correctCount * 1.00;
+      const negativeMarks = wrongCount * 0.33;
+      const finalScore = Math.max(0, positiveMarks - negativeMarks).toFixed(2);
+      const attempted = correctCount + wrongCount;
+      const accuracy = attempted > 0 ? ((correctCount / attempted) * 100).toFixed(1) : "0.0";
+
+      const attemptRecord = {
+        sessionId: currentSessionId,
+        examName: currentExam.name,
+        candidateName: currentUser ? (currentUser.name || currentUser.username) : "Guest Aspirant",
+        userEmail: currentUser ? currentUser.email : "guest@railpathshala.test",
+        username: currentUser ? currentUser.username : "guest",
+        date: new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }),
+        totalQuestions: 20,
+        attempted: attempted,
+        correct: correctCount,
+        wrong: wrongCount,
+        unattempted: unattemptedCount,
+        posMarks: positiveMarks.toFixed(2),
+        negMarks: negativeMarks.toFixed(2),
+        finalScore: finalScore,
+        accuracy: accuracy
+      };
+
+      // Save to LocalStorage attempts
+      const allAttempts = JSON.parse(localStorage.getItem('rpp_attempts')) || [];
+      allAttempts.push(attemptRecord);
+      localStorage.setItem('rpp_attempts', JSON.stringify(allAttempts));
+
+      // Hide CBT screen
+      document.getElementById('cbt-screen').classList.add('hidden');
+
+      // Trigger 5-second Thank You Splash
+      const splash = document.getElementById('splash-screen');
+      splash.classList.remove('hidden');
+
+      setTimeout(() => {
+        splash.classList.add('hidden');
+        renderResultView(attemptRecord);
+        navigateTo('result');
+      }, 4800);
+    }
+
+    function renderResultView(res) {
+      document.getElementById('res-score-display').textContent = `Score: ${res.finalScore} / 20.00`;
+      document.getElementById('res-candidate-name').textContent = `Candidate: ${res.candidateName} | ${res.examName}`;
+      document.getElementById('res-session-tag').textContent = `Session ID: ${res.sessionId} • Date: ${res.date}`;
+
+      document.getElementById('res-attempted').textContent = res.attempted;
+      document.getElementById('res-correct').textContent = res.correct;
+      document.getElementById('res-wrong').textContent = res.wrong;
+      document.getElementById('res-pos-marks').textContent = `+${res.posMarks}`;
+      document.getElementById('res-neg-marks').textContent = `-${res.negMarks}`;
+
+      const accVal = parseFloat(res.accuracy);
+      document.getElementById('res-donut-pct').textContent = `${accVal}%`;
+      document.getElementById('res-bar-acc-val').textContent = `${accVal}%`;
+      document.getElementById('res-bar-acc').style.width = `${accVal}%`;
+
+      const attPct = ((res.attempted / 20) * 100).toFixed(0);
+      document.getElementById('res-bar-att-val').textContent = `${attPct}%`;
+      document.getElementById('res-bar-att').style.width = `${attPct}%`;
+
+      // CSS Conic Gradient Donut
+      const correctDeg = (res.correct / 20) * 360;
+      const wrongDeg = (res.wrong / 20) * 360;
+      document.getElementById('res-donut-chart').style.background = `
+        conic-gradient(
+          #10b981 0deg ${correctDeg}deg,
+          #ef4444 ${correctDeg}deg ${correctDeg + wrongDeg}deg,
+          #cbd5e1 ${correctDeg + wrongDeg}deg 360deg
+        )
+      `;
+    }
+
+    function viewHistoricalResult(sessionId) {
+      const allAttempts = JSON.parse(localStorage.getItem('rpp_attempts')) || [];
+      const record = allAttempts.find(a => a.sessionId === sessionId);
+      if (record) {
+        renderResultView(record);
+        navigateTo('result');
+      }
+    }
+
+    /* =========================================================
+       ADMIN CONTROL PANEL (CLIENT-SIDE MVC)
+       ========================================================= */
+    function checkAdminSession() {
+      const isAdm = sessionStorage.getItem('rpp_admin_logged');
+      if (isAdm === 'true') {
+        document.getElementById('admin-login-box').classList.add('hidden');
+        document.getElementById('admin-workspace').classList.remove('hidden');
+        renderAdminStats();
+      } else {
+        document.getElementById('admin-login-box').classList.remove('hidden');
+        document.getElementById('admin-workspace').classList.add('hidden');
+      }
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const mail = document.getElementById('admin-email').value.trim();
+      const pass = document.getElementById('admin-password').value;
+      if (mail === 'admin@railpathshala.test' && pass === 'Admin@12345') {
+        sessionStorage.setItem('rpp_admin_logged', 'true');
+        showToast("Admin access granted ✓");
+        checkAdminSession();
+      } else {
+        alert("Invalid Admin Credentials!");
+      }
+    }
+
+    function handleAdminLogout() {
+      sessionStorage.removeItem('rpp_admin_logged');
+      showToast("Admin session ended");
+      checkAdminSession();
+    }
+
+    function setAdminTab(tab) {
+      ['dash', 'questions', 'add-q', 'students', 'results'].forEach(t => {
+        document.getElementById(`admin-tab-${t}`).classList.toggle('hidden', t !== tab);
+      });
+
+      if (tab === 'questions') renderAdminQuestions();
+      if (tab === 'students') renderAdminStudents();
+      if (tab === 'results') renderAdminResults();
+      if (tab === 'dash') renderAdminStats();
+    }
+
+    function renderAdminStats() {
+      const users = JSON.parse(localStorage.getItem('rpp_users')) || [];
+      const qs = JSON.parse(localStorage.getItem('rpp_questions')) || [];
+      const atts = JSON.parse(localStorage.getItem('rpp_attempts')) || [];
+
+      document.getElementById('adm-stat-students').textContent = users.length;
+      document.getElementById('adm-stat-questions').textContent = qs.length;
+      document.getElementById('adm-stat-attempts').textContent = atts.length;
+    }
+
+    function renderAdminQuestions() {
+      const qs = JSON.parse(localStorage.getItem('rpp_questions')) || [];
+      const tbody = document.getElementById('adm-questions-tbody');
+      tbody.innerHTML = qs.map((q, idx) => `
+        <tr>
+          <td>${q.id || (idx + 1)}</td>
+          <td><span class="badge badge-primary">${q.subject || 'GS'}</span></td>
+          <td style="max-width: 320px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${q.question}</td>
+          <td><b>Opt ${['A', 'B', 'C', 'D'][q.answer]}</b></td>
+          <td>
+            <button class="btn btn-sm btn-danger" onclick="deleteQuestion(${idx})">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function handleAdminAddQuestion(e) {
+      e.preventDefault();
+      const sub = document.getElementById('add-q-subject').value;
+      const text = document.getElementById('add-q-text').value.trim();
+      const o0 = document.getElementById('add-q-opt0').value.trim();
+      const o1 = document.getElementById('add-q-opt1').value.trim();
+      const o2 = document.getElementById('add-q-opt2').value.trim();
+      const o3 = document.getElementById('add-q-opt3').value.trim();
+      const ans = parseInt(document.getElementById('add-q-answer').value);
+      const exp = document.getElementById('add-q-exp').value.trim();
+
+      const newQ = {
+        id: Date.now(),
+        subject: sub,
+        question: text,
+        options: [o0, o1, o2, o3],
+        answer: ans,
+        explanation: exp || "Standard solved answer."
+      };
+
+      const qs = JSON.parse(localStorage.getItem('rpp_questions')) || [];
+      qs.unshift(newQ);
+      localStorage.setItem('rpp_questions', JSON.stringify(qs));
+
+      showToast("Question added successfully ✓");
+      e.target.reset();
+      setAdminTab('questions');
+    }
+
+    function deleteQuestion(idx) {
+      if (confirm("Are you sure you want to remove this question?")) {
+        const qs = JSON.parse(localStorage.getItem('rpp_questions')) || [];
+        qs.splice(idx, 1);
+        localStorage.setItem('rpp_questions', JSON.stringify(qs));
+        showToast("Question deleted ✓");
+        renderAdminQuestions();
+      }
+    }
+
+    function renderAdminStudents() {
+      const users = JSON.parse(localStorage.getItem('rpp_users')) || [];
+      const atts = JSON.parse(localStorage.getItem('rpp_attempts')) || [];
+      const tbody = document.getElementById('adm-students-tbody');
+
+      tbody.innerHTML = users.map(u => {
+        const myAtts = atts.filter(a => a.userEmail === u.email || a.username === u.username);
+        return `
+          <tr>
+            <td><strong>${u.name || 'Student'}</strong></td>
+            <td>${u.email}</td>
+            <td>${u.phone || 'N/A'}</td>
+            <td>${u.username}</td>
+            <td><span class="badge badge-primary">${myAtts.length} Tests</span></td>
+            <td><span class="badge badge-success">Active</span></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderAdminResults() {
+      const atts = JSON.parse(localStorage.getItem('rpp_attempts')) || [];
+      const tbody = document.getElementById('adm-results-tbody');
+      tbody.innerHTML = atts.slice().reverse().map(a => `
+        <tr>
+          <td>${a.candidateName}</td>
+          <td>${a.examName}</td>
+          <td><code style="font-family: var(--font-mono);">${a.sessionId}</code></td>
+          <td><strong>${a.finalScore}</strong> / 20</td>
+          <td>${a.accuracy}%</td>
+          <td>${a.date}</td>
+        </tr>
+      `).join('');
+    }
+
+    /* =========================================================
+       INITIAL APPLICATION LOAD
+       ========================================================= */
+    window.addEventListener('DOMContentLoaded', () => {
+      // Populate popular exams on home page
+      renderExamsGrid('home-exams-grid', INITIAL_EXAMS.slice(0, 6));
+      updateNavbar();
+    });
+  </script>
+</body>
+</html>
